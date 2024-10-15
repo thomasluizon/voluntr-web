@@ -1,0 +1,6 @@
+{
+  "*.ts": [
+    "eslint --fix",
+    "vitest run --coverage.all --passWithNoTests"
+  ]
+}
