@@ -6,6 +6,7 @@ import InputPassword from '@/components/app/custom/InputPassword.vue'
 const factory = (props = {}) => {
   return mount(InputPassword, {
     props: {
+      id: 'password',
       label: 'Senha',
       ...props
     }
@@ -25,5 +26,15 @@ describe('InputPassword.vue', () => {
       const wrapper = factory({ label })
       expect(wrapper.find('label').text()).toBe(label)
     })
+  })
+
+  it('should link label and input via for and id attributes', async () => {
+    const wrapper = factory({ id: 'password' })
+
+    const label = wrapper.find('label')
+    const input = wrapper.find('input')
+
+    expect(label.attributes('for')).toEqual('password')
+    expect(input.attributes('id')).toEqual('password')
   })
 })
