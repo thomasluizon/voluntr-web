@@ -37,4 +37,12 @@ describe('InputPassword.vue', () => {
     expect(label.attributes('for')).toEqual('password')
     expect(input.attributes('id')).toEqual('password')
   })
+
+  it('should render a button to toggle password visibility', async () => {
+    const wrapper = factory()
+    const button = wrapper.find('button')
+
+    expect(button.exists()).toBe(true)
+    expect(button.attributes('aria-controls')).toEqual('password')
+  })
 })
