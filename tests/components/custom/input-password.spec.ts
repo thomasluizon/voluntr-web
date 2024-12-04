@@ -40,6 +40,7 @@ describe('InputPassword.vue', () => {
 
   it('should render a button to toggle password visibility', async () => {
     const wrapper = factory()
+
     const button = wrapper.find('button')
 
     expect(button.exists()).toBe(true)
@@ -48,6 +49,7 @@ describe('InputPassword.vue', () => {
 
   it('should toggle password visibility when button is clicked', async () => {
     const wrapper = factory()
+
     const button = wrapper.find('button')
     const input = wrapper.find('input')
 
@@ -60,5 +62,23 @@ describe('InputPassword.vue', () => {
 
     expect(input.attributes('type')).toEqual('password')
     expect(wrapper.vm.isVisible).toBe(false)
+  })
+
+  it('should pass extra attributes to the Input component via $attrs', () => {
+    const wrapper = mount(InputPassword, {
+      props: {
+        id: 'password',
+        label: 'Senha'
+      },
+      attrs: {
+        'placeholder': 'Digite sua senha',
+        maxLength: 20
+      }
+    })
+
+    const input = wrapper.find('input')
+
+    expect(input.attributes('placeholder')).toEqual('Digite sua senha')
+    expect(input.attributes('maxlength')).toEqual('20')
   })
 })
