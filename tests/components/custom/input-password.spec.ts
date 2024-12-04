@@ -45,4 +45,20 @@ describe('InputPassword.vue', () => {
     expect(button.exists()).toBe(true)
     expect(button.attributes('aria-controls')).toEqual('password')
   })
+
+  it('should toggle password visibility when button is clicked', async () => {
+    const wrapper = factory()
+    const button = wrapper.find('button')
+    const input = wrapper.find('input')
+
+    await button.trigger('click')
+
+    expect(input.attributes('type')).toEqual('text')
+    expect(wrapper.vm.isVisible).toBe(true)
+
+    await button.trigger('click')
+
+    expect(input.attributes('type')).toEqual('password')
+    expect(wrapper.vm.isVisible).toBe(false)
+  })
 })
