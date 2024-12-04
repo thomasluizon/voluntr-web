@@ -28,6 +28,11 @@ describe('InputPassword.vue', () => {
     })
   })
 
+  it('should render input with placeholder text', () => {
+    const wrapper = factory({ placeholder: 'Digite sua senha' })
+    expect(wrapper.find('input').attributes('placeholder')).toBe('Digite sua senha')
+  })
+
   it('should link label and input via for and id attributes', async () => {
     const wrapper = factory({ id: 'password' })
 
