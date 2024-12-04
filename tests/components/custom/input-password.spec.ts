@@ -8,4 +8,18 @@ describe('InputPassword.vue', () => {
     const wrapper = mount(InputPassword)
     expect(wrapper.find('input[type="password"]').exists()).toBe(true)
   })
+
+  it('should render input with label text', () => {
+    const scenarios = ['Senha', 'Confirmar senha']
+
+    scenarios.forEach((label) => {
+      const wrapper = mount(InputPassword, {
+        props: {
+          label: label
+        }
+      })
+
+      expect(wrapper.find('label').text()).toBe(label)
+    })
+  })
 })
