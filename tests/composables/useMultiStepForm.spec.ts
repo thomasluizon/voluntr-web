@@ -14,6 +14,17 @@ describe('useMultiStepForm', () => {
     expect(hasPrevious.value).toBe(false)
   })
 
+  it('should move to the next step on submit', () => {
+    const validationSchema = [{}, {}, {}]
+    const emitMock = vi.fn()
+
+    const { currentStepIdx, onSubmit } = useMultiStepForm(validationSchema, emitMock)
+
+    onSubmit()
+
+    expect(currentStepIdx.value).toBe(1)
+  })
+
   it('should determinate when it is the last step', () => {
     const validationSchema = [{}, {}, {}]
     const emitMock = vi.fn()
