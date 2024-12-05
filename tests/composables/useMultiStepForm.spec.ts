@@ -13,4 +13,15 @@ describe('useMultiStepForm', () => {
     expect(isLastStep.value).toBe(false)
     expect(hasPrevious.value).toBe(false)
   })
+
+  it('should determinate when it is the last step', () => {
+    const validationSchema = [{}, {}, {}]
+    const emitMock = vi.fn()
+
+    const { currentStepIdx, isLastStep } = useMultiStepForm(validationSchema, emitMock)
+
+    currentStepIdx.value = 2
+
+    expect(isLastStep.value).toBe(true)
+  })
 })
