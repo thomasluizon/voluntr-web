@@ -9,9 +9,16 @@ export function useMultiStepForm(validationSchema: ValidationSchema, emit: EmitF
   const isLastStep = computed(() => currentStepIdx.value === validationSchema.length - 1)
   const hasPrevious = computed(() => currentStepIdx.value > 0)
 
+  function onSubmit() {
+    if (!isLastStep.value) {
+      currentStepIdx.value++
+    }
+  }
+
   return {
     currentStepIdx,
     isLastStep,
-    hasPrevious
+    hasPrevious,
+    onSubmit
   }
 }
